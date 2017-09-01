@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <strings.h>
+
+#define MAXIMO 64
+#define TESTE 5
+
+#define TRUE 1
+#define FALSE 0
+
+struct aluno{
+	char nome[MAXIMO];
+	char telefone[MAXIMO];
+	int idade;
+};
+
+typedef struct aluno Aluno;
+
+Aluno aluno_cria(char name, char tel, int id);
+
+int main(){
+	Aluno cadastros[TESTE];
+	char name[MAXIMO];
+	char tel[MAXIMO];
+	int id;
+	int i;
+	
+	for(i = 0; i < TESTE; i++){
+		printf("Digite nome do aluno......: ");
+		fgets(name, MAXIMO, stdin);
+		printf("Digite telefone do aluno..: ");
+		fgets(tel, MAXIMO, stdin);
+		printf("Digite idade do aluno.....: ");
+		scanf("%d", &id);
+		cadastros[i] = aluno_cria(name, tel, id);
+	}
+		
+	return 0;
+}
+
+Aluno aluno_cria(char name, char tel, int id){
+	Aluno novo;
+	novo = malloc(sizeof(struct aluno));
+	strcpy(novo.nome, name);
+	strcpy(novo.telefone, tel);
+	novo.idade = id;
+	return novo;
+}
